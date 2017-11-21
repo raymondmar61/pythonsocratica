@@ -340,50 +340,95 @@ for i in range(0,20):
 	print(random.choice(outcomes))
 print("\n")
 
-path = "/home/mar/Python/socratica/googlestockdata.csv"
-file = open(path)
-# for line in file:
-# 	print(line) #print each lin in googlestockdata.csv
-lines = [line for line in open(path)] #list comprehension.  #A list comprehension allows you to generate this same list in just one line of code. A list comprehension combines the for loop and the creation of new elements into one line, and automatically appends each new element. Chapter 4 Python Crash Course ch4workingwithliststaketwo.py.
-print(lines[0]) #print Date,Open,High,Low,Close,Volume,Adj Close
-print(lines[1]) #print 8/19/2014,585.002622,587.342658,584.002627,586.862643,978600,586.862643
-print(lines[0].strip()) #print Date,Open,High,Low,Close,Volume,Adj Close
-print(lines[0].strip().split(",")) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
-dataset = [line.strip().split(",") for line in open(path)]
-print(dataset[0]) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
-print(dataset[1]) #print ['8/19/2014', '585.002622', '587.342658', '584.002627', '586.862643', '978600', '586.862643']
-import csv
-from datetime import datetime
-#print(dir(csv)) #print ['Dialect', 'DictReader', 'DictWriter', 'Error', 'QUOTE_ALL', 'QUOTE_MINIMAL', 'QUOTE_NONE', 'QUOTE_NONNUMERIC', 'Sniffer', 'StringIO', '_Dialect', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', 'excel', 'excel_tab', 'field_size_limit', 'get_dialect', 'list_dialects', 're', 'reader', 'register_dialect', 'unix_dialect', 'unregister_dialect', 'writer']
-path = "/home/mar/Python/socratica/googlestockdata.csv"
-file = open(path, newline="")
-reader = csv.reader(file)
-header = next(reader) #The first line is the header.  Assign the header row equal to header from next(reader)
-# data = [row for row in reader]
-# print(header) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
-# print(data[0]) #print ['8/19/2014', '585.002622', '587.342658', '584.002627', '586.862643', '978600', '586.862643']
-data = []
-for row in reader:
-	date = datetime.strptime(row[0], "%m/%d/%Y")
-	open_price = float(row[1])
-	high = float(row[2])
-	low = float(row[3])
-	close = float(row[4])
-	volume = int(row[5])
-	adjclose = float(row[6])
-data.append([date, open_price, high, low, close, volume, adjclose])
-print(data[0]) #print [datetime.datetime(2004, 8, 19, 0, 0), 100.000168, 104.060182, 95.960165, 100.340176, 44871300, 50.119968]
-returnspath = "/home/mar/Python/socratica/googlestockdatareturns.csv"
-file = open(returnspath, "w")
-writer = csv.writer(file)
-writer.writerow(["Date","Return"])
-for i in range(len(data)-1):
-	todaysrow = data[i]
-	todaysdate = todaysrow[0]
-	todaysprice = todaysrow[-1]
-	yesterdaysrow = data[i+1]
-	yesterdaysprice = yesterdaysrow[-1]	
-	dailyreturn = (todaysprice - yesterdaysprice) / yesterdaysprice
-	formatteddate = todaysdate.strftime("%m/%d/%Y")
-	writer.writerow([formatteddate, dailyreturn])
-#RM: code not working
+# path = "/home/mar/Python/socratica/googlestockdata.csv"
+# file = open(path)
+# # for line in file:
+# # 	print(line) #print each lin in googlestockdata.csv
+# lines = [line for line in open(path)] #list comprehension.  #A list comprehension allows you to generate this same list in just one line of code. A list comprehension combines the for loop and the creation of new elements into one line, and automatically appends each new element. Chapter 4 Python Crash Course ch4workingwithliststaketwo.py.
+# print(lines[0]) #print Date,Open,High,Low,Close,Volume,Adj Close
+# print(lines[1]) #print 8/19/2014,585.002622,587.342658,584.002627,586.862643,978600,586.862643
+# print(lines[0].strip()) #print Date,Open,High,Low,Close,Volume,Adj Close
+# print(lines[0].strip().split(",")) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
+# dataset = [line.strip().split(",") for line in open(path)]
+# print(dataset[0]) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
+# print(dataset[1]) #print ['8/19/2014', '585.002622', '587.342658', '584.002627', '586.862643', '978600', '586.862643']
+# import csv
+# from datetime import datetime
+# #print(dir(csv)) #print ['Dialect', 'DictReader', 'DictWriter', 'Error', 'QUOTE_ALL', 'QUOTE_MINIMAL', 'QUOTE_NONE', 'QUOTE_NONNUMERIC', 'Sniffer', 'StringIO', '_Dialect', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '__version__', 'excel', 'excel_tab', 'field_size_limit', 'get_dialect', 'list_dialects', 're', 'reader', 'register_dialect', 'unix_dialect', 'unregister_dialect', 'writer']
+# path = "/home/mar/Python/socratica/googlestockdata.csv"
+# file = open(path, newline="")
+# reader = csv.reader(file)
+# header = next(reader) #The first line is the header.  Assign the header row equal to header from next(reader)
+# # data = [row for row in reader]
+# # print(header) #print ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
+# # print(data[0]) #print ['8/19/2014', '585.002622', '587.342658', '584.002627', '586.862643', '978600', '586.862643']
+# data = []
+# for row in reader:
+# 	date = datetime.strptime(row[0], "%m/%d/%Y")
+# 	open_price = float(row[1])
+# 	high = float(row[2])
+# 	low = float(row[3])
+# 	close = float(row[4])
+# 	volume = int(row[5])
+# 	adjclose = float(row[6])
+# data.append([date, open_price, high, low, close, volume, adjclose])
+# print(data[0]) #print [datetime.datetime(2004, 8, 19, 0, 0), 100.000168, 104.060182, 95.960165, 100.340176, 44871300, 50.119968]
+# returnspath = "/home/mar/Python/socratica/googlestockdatareturns.csv"
+# file = open(returnspath, "w")
+# writer = csv.writer(file)
+# writer.writerow(["Date","Return"])
+# for i in range(len(data)-1):
+# 	todaysrow = data[i]
+# 	todaysdate = todaysrow[0]
+# 	todaysprice = todaysrow[-1]
+# 	yesterdaysrow = data[i+1]
+# 	yesterdaysprice = yesterdaysrow[-1]	
+# 	dailyreturn = (todaysprice - yesterdaysprice) / yesterdaysprice
+# 	formatteddate = todaysdate.strftime("%m/%d/%Y")
+# 	writer.writerow([formatteddate, dailyreturn])
+# #RM: code not working
+
+import random
+def randomwalk(n):
+	"""return coordinates after "n" block random walk."""
+	x = 0
+	y = 0
+	for i in range(0,n):
+		step = random.choice(["N","S","E","W"])
+		if step == "N":
+			y = y + 1
+		elif step == "S":
+			y = y - 1
+		elif step == "E":
+			x = x + 1
+		else:
+			x = x - 1
+	return (x,y)
+print(randomwalk(100))
+for i in range(0,25):
+	walk = randomwalk(10)
+	#print(walk,"Distance from home = ",abs(walk[0]) + abs(walk[1]))
+def randomwalk2(n):
+	"""return coordinates after "n" block random walk."""
+	x,y = 0,0	
+	for i in range(0,n):
+		(dx, dy) = random.choice([(0,1),(0,-1),(1,0),(-1,0)]) #it seems dx is the left of the (,) and dy is the right of the (,). N is (0,1), S (0,-1), E (1,0), W (-1,0)
+		#print("dx",dx,"dy",dy)
+		x += dx
+		y += dy
+	return (x,y)
+for i in range(0,25):
+	walk = randomwalk2(10)
+	print(walk,"Distance from home = ",abs(walk[0]) + abs(walk[1]))
+#monte carlo simulation which is thousands of random trials
+numberofwalks = 10000
+for walklength in range(1,31):
+	notransport = 0 #number of walks four or few blocks from home
+	for i in range(0,numberofwalks):
+		(x,y) = randomwalk2(walklength)
+		#print("x",x,"y",y)
+		distance = abs(x) + abs(y)
+		if distance <= 4:
+			notransport += 1
+	notransportpercentage = float(notransport) / numberofwalks
+	print("Walk size =",walklength, "/ % of no transport =",100*notransportpercentage)
