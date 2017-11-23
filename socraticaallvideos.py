@@ -1,7 +1,7 @@
 #Socratica 002 Hello world, 003 Introduction to Strings, 004 Numbers in Version 2, 005 Numbers in Version 3, 006 Arithmetic in Python V2, 007 Arithmetic in Python V3, 009 Booleans, 010 If then else, 011 Python Functions, 012 Sets in Python, 013 Python Lists, 014 Python Dictionaries, 015 Python Tuples, 
 #New 027 Socratica New 027 Map, Filter, and Reduce Functions Python Tutorial Learn Python Programming
 
-#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, 
+#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, New 021 A Random Walk & Monte Carlo Simulation, New 022 List Comprehension, 
 
 print("Hello world") #print Hello world
 message = "Meet me tonight."
@@ -404,9 +404,9 @@ def randomwalk(n):
 		else:
 			x = x - 1
 	return (x,y)
-print(randomwalk(100))
-for i in range(0,25):
-	walk = randomwalk(10)
+print(randomwalk(10))
+for i in range(0,5):
+	walk = randomwalk(5)
 	#print(walk,"Distance from home = ",abs(walk[0]) + abs(walk[1]))
 def randomwalk2(n):
 	"""return coordinates after "n" block random walk."""
@@ -417,12 +417,12 @@ def randomwalk2(n):
 		x += dx
 		y += dy
 	return (x,y)
-for i in range(0,25):
+for i in range(0,5):
 	walk = randomwalk2(10)
 	print(walk,"Distance from home = ",abs(walk[0]) + abs(walk[1]))
 #monte carlo simulation which is thousands of random trials
 numberofwalks = 10000
-for walklength in range(1,31):
+for walklength in range(1,5):
 	notransport = 0 #number of walks four or few blocks from home
 	for i in range(0,numberofwalks):
 		(x,y) = randomwalk2(walklength)
@@ -432,3 +432,109 @@ for walklength in range(1,31):
 			notransport += 1
 	notransportpercentage = float(notransport) / numberofwalks
 	print("Walk size =",walklength, "/ % of no transport =",100*notransportpercentage)
+
+#list comprehension [expression for variable in collection if test1 and test2]  
+#list comprehension [expression for variable1 in collection1 and variable2 in collection2]
+squares = []
+for i in range(1, 11):
+	squares.append(i**2)
+print(squares) #print [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+squares2 = [i**2 for i in range(1,11)]
+print(squares2) #print [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+remainders5 = [x**2 % 5 for x in range(1,101)]
+print(remainders5) #print [1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0, 1, 4, 4, 1, 0]
+movies = ["Star Wars", "Gandhi", "Casablanca", "Shawshank Redemption", "Toy Story" "Gone With The Wind", "Citizen Kane", "It's A Wonderful Life", "The Wizard Of Oz", "Gattaca", "Rear Window", "Ghostbusters", "To Kill A Mockingbird", "Good Will Hunting", "2001: A Space Odyssey", "Raiders Of The Lost Ark", 
+"Groundhog Day", "Close Encounters Of The Third Kind"]
+gmovies = []
+for title in movies:
+	if title.startswith("G"):
+		gmovies.append(title)
+print(gmovies) #print ['Gandhi', 'Gattaca', 'Ghostbusters', 'Good Will Hunting', 'Groundhog Day']
+gmovies2 = [title for title in movies if title.startswith("G")]
+print(gmovies2) #print ['Gandhi', 'Gattaca', 'Ghostbusters', 'Good Will Hunting', 'Groundhog Day']
+movies2 = [("Citizen Kane", 1941), ("Spirited Away", 2001), ("It's A Wonderful Life", 1946), ("Gattaca", 1997), ("No Country For Old Men", 2007), ("Rear Window", 1954), ("The Lord Of The Rings:  The Fellowship Of The Ring", 2001), ("Groundhog Day", 1993), ("Close Encounters Of The Third Kind", 1977), 
+("The Royal Tenenbaums", 2001), ("The Aviator", 2004), ("Raiders Of The Lost Ark", 1981)]
+movies2001 = []
+for key, value in movies2:
+	if value > 2000:
+		movies2001.append(key)
+print(movies2001) #print ['Spirited Away', 'No Country For Old Men', 'The Lord Of The Rings:  The Fellowship Of The Ring', 'The Royal Tenenbaums', 'The Aviator']
+movies20012 = [title for (title, year) in movies2 if year < 2000]
+print(movies20012) #print ['Citizen Kane', "It's A Wonderful Life", 'Gattaca', 'Rear Window', 'Groundhog Day', 'Close Encounters Of The Third Kind', 'Raiders Of The Lost Ark']
+vectorlist = [2, -3, 1]
+print(4*vectorlist) #print [2, -3, 1, 2, -3, 1, 2, -3, 1, 2, -3, 1] or vectorlist+vectorlist+vectorlist+vectorlist.  Adding lists concatenates them.
+wvectorlist = [4*x for x in vectorlist]
+print(wvectorlist) #print [8, -12, 4]
+#Cartesian product a={1,3} b={x,y} a*b={(1,x), (1,y), (3,x), (3,y)}
+oddlist = [1, 3, 5, 7]
+evenlist = [2, 4, 6, 8]
+cartesianproduct = [(a,b) for a in oddlist for b in evenlist]
+cartesianproductproduct = [a*b for a in oddlist for b in evenlist]
+print(cartesianproduct) #print [(1, 2), (1, 4), (1, 6), (1, 8), (3, 2), (3, 4), (3, 6), (3, 8), (5, 2), (5, 4), (5, 6), (5, 8), (7, 2), (7, 4), (7, 6), (7, 8)]
+print(cartesianproductproduct) #print [2, 4, 6, 8, 6, 12, 18, 24, 10, 20, 30, 40, 14, 28, 42, 56]
+print(max(cartesianproductproduct)) #print 56
+list1 = [1]
+list2 = [2, 3]
+list3 = [4, 5, 6]
+list123 = [a*b*c for a in list1 for b in list2 for c in list3]
+print(list123) #print [8, 10, 12, 12, 15, 18]
+listall = [[1], [2, 3], [4, 5, 6]]
+listallproduct = [a for a in listall]
+print(listallproduct) #print [[1], [2, 3], [4, 5, 6]]
+
+import math
+import time
+def isprimev1(n):
+	if n == 1:
+		return False #1 is not a prime number
+	for d in range(2, n):
+		if n % d == 0:
+			return False
+	return True
+t0 = time.time()
+for n in range(1, 11):
+	print(n, isprimev1(n))
+t1 = time.time()
+print("Time required: ",t1-t0)
+def isprimev2(n):
+	if n == 1:
+		return False #1 is not a prime number
+	maxdivisor = math.floor(math.sqrt(n))
+	for d in range(2, 1+maxdivisor):
+		if n % d == 0:
+			return False
+	return True
+t2 = time.time()
+for n in range(1, 11):
+	print(n, isprimev2(n))
+t3 = time.time()
+print("Time required v2: ",t3-t2)
+t4 = time.time()
+for n in range(1, 100001):
+	isprimev2(n)
+	#print(n, isprimev2(n))
+t5 = time.time()
+print("Time required v2: ",t5-t4)
+def isprimev3(n):
+	if n == 1:
+		return False #1 is not a prime number
+	if n == 2:
+		return True
+	if n > 2 and n % 2 == 0:
+		return False
+	maxdivisor = math.floor(math.sqrt(n))
+	for d in range(3, 1+maxdivisor,2):
+		if n % d == 0:
+			return False
+	return True
+t6 = time.time()
+for n in range(1, 11):
+	print(n, isprimev3(n))
+t7 = time.time()
+print("Time required v3: ",t7-t2)
+t8 = time.time()
+for n in range(1, 100001):
+	isprimev3(n)
+	#print(n, isprimev3(n))
+t9 = time.time()
+print("Time required v3: ",t9-t8)
