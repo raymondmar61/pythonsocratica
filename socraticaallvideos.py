@@ -1,7 +1,6 @@
 #Socratica 002 Hello world, 003 Introduction to Strings, 004 Numbers in Version 2, 005 Numbers in Version 3, 006 Arithmetic in Python V2, 007 Arithmetic in Python V3, 009 Booleans, 010 If then else, 011 Python Functions, 012 Sets in Python, 013 Python Lists, 014 Python Dictionaries, 015 Python Tuples, 
-#New 027 Socratica New 027 Map, Filter, and Reduce Functions Python Tutorial Learn Python Programming
 
-#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, New 021 A Random Walk & Monte Carlo Simulation, New 022 List Comprehension, 
+#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, New 021 A Random Walk & Monte Carlo Simulation, New 022 List Comprehension, New 024 Prime Numbers, New 023 Python Classes and Objects, New 026 Lambda Expressions & Anonymous Functions, 
 
 print("Hello world") #print Hello world
 message = "Meet me tonight."
@@ -538,3 +537,78 @@ for n in range(1, 100001):
 	#print(n, isprimev3(n))
 t9 = time.time()
 print("Time required v3: ",t9-t8)
+print("\n")
+
+import datetime
+class User:
+	pass
+user1 = User()
+user1.firstname = "Dave"
+user1.lastname = "Bowman"
+print(user1.firstname) #print Dave
+print(user1.lastname) #print Bowman
+user2 = User()
+user2.firstname = "Frank"
+user2.lastname = "Poole"
+print(user2.firstname) #print Frank
+print(user2.lastname) #print Poole
+user1.age = 37
+user2.favoritebook = "2001: A Space Odyssey"
+print(user1.age) #print 37
+class User2:
+	"""document string type print(help(user2)) for class"""
+	def __init__(self, fullname, birthday):
+		self.name = fullname
+		self.birthday = birthday #yyymmdd
+		#extract first name and last name
+		namepieces = fullname.split(" ")
+		self.firstname = namepieces[0]
+		self.lastname = namepieces[-1]
+	def age(self):
+		"""Return the age of the user in years."""
+		today = datetime.date(2001, 5, 12)
+		yyyy = int(self.birthday[0:4])
+		mm = int(self.birthday[4:6])
+		dd = int(self.birthday[6:8])
+		dob = datetime.date(yyyy, mm, dd) #date of birth
+		print(today)
+		print(dob)
+		ageindays = (today - dob).days
+		ageinyears = ageindays / 385
+		return int(ageinyears)
+user = User2("Dave Bowman","19710315")
+print(user.name) #print Dave Bowman
+print(user.firstname) #print Dave
+print(user.lastname) #print Bowman
+print(user.birthday) #print 19700315
+print(user.age()) #print 28
+#print(help(User2)) #press q to exit the help #RM: comment help out
+print("\n")
+
+def function(x):
+	return 3*x + 1
+print(function(2)) #print 7
+#lambdanameexpression = lambda inputs: expressions for output
+g = lambda x:3*x + 1
+print(g(2)) #print 7
+fullname = lambda fn, ln: fn.strip().title() + " " + ln.strip().title()
+print(fullname(" Leonhard","euler")) #print Leonhard Euler
+noinput = lambda : "What is my purpose noinput?"
+print(noinput) #print <function <lambda> at 0x7fbe3f556e18>
+print(noinput()) #print What is my purpose noinput?
+noinput2 = lambda  x : "What is my purpose noinput2?"
+print(noinput2(0)) #print What is my purpose noinput2?
+geometricmean = lambda x, y:(x*y)**0.5
+print(geometricmean(5,6)) #print 5.477225575051661
+harmonicmean = lambda x, y, z:(1/x + 1/y + 1/z)
+print(harmonicmean(4,10,12)) #print 0.4333333333333333
+scifiauthors = ["Isaac Asimov","Ray Bradbury","Robert Heinlein","Arthur C. Clarke","Frank Herbert","Orson Scott Card","Douglas Adams","H.G. Wells","Leigh Brackett"]
+scifiauthors.sort(key=lambda name: name.split(" ")[-1].lower())
+print(scifiauthors) #print ['Douglas Adams', 'Isaac Asimov', 'Leigh Brackett', 'Ray Bradbury', 'Orson Scott Card', 'Arthur C. Clarke', 'Robert Heinlein', 'Frank Herbert', 'H.G. Wells']
+def quadraticfunction(a, b, c):
+	"""return the function f(x): ax^2+bx+c"""
+	return lambda x:a*x**2 + b*x + c
+f = quadraticfunction(2, 3, -5)
+print(f) #print <function quadraticfunction.<locals>.<lambda> at 0x7f16c58d2158>
+print(quadraticfunction(3,0,1)(2)) #print 13 3x^2+0+1 for x=2
+print(quadraticfunction(2,3,-5)(2)) #print 9 2*2^2+3*2+-5 for x=2
