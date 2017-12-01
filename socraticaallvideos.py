@@ -1,6 +1,6 @@
 #Socratica 002 Hello world, 003 Introduction to Strings, 004 Numbers in Version 2, 005 Numbers in Version 3, 006 Arithmetic in Python V2, 007 Arithmetic in Python V3, 009 Booleans, 010 If then else, 011 Python Functions, 012 Sets in Python, 013 Python Lists, 014 Python Dictionaries, 015 Python Tuples, 
 
-#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, New 021 A Random Walk & Monte Carlo Simulation, New 022 List Comprehension, New 024 Prime Numbers, New 023 Python Classes and Objects, New 026 Lambda Expressions & Anonymous Functions, 
+#Socratica New 027 Map, Filter, and Reduce Functions, New 010 Datetime Module (Dates and Times),  New 017 Logging in Python, New 019 Python Random Number Generator the Random Module, New 020 CSV Files in Python, New 021 A Random Walk & Monte Carlo Simulation, New 022 List Comprehension, New 024 Prime Numbers, New 023 Python Classes and Objects, New 026 Lambda Expressions & Anonymous Functions, New 025 JSON, New 028 Sorting
 
 print("Hello world") #print Hello world
 message = "Meet me tonight."
@@ -612,3 +612,30 @@ f = quadraticfunction(2, 3, -5)
 print(f) #print <function quadraticfunction.<locals>.<lambda> at 0x7f16c58d2158>
 print(quadraticfunction(3,0,1)(2)) #print 13 3x^2+0+1 for x=2
 print(quadraticfunction(2,3,-5)(2)) #print 9 2*2^2+3*2+-5 for x=2
+
+#JSON JavaScript Object Notation
+#Just watched video.
+
+earthmetals = ["Beryllium","Magnesium","Calcium","Strontium","Barium","Radium"]
+print(earthmetals.sort()) #print None
+sortearthmetals = earthmetals.sort()
+print(sortearthmetals) #print None
+earthmetals.sort()
+print(earthmetals) #print ['Barium', 'Beryllium', 'Calcium', 'Magnesium', 'Radium', 'Strontium']
+earthmetals.sort(reverse=True)
+print(earthmetals) #print ['Strontium', 'Radium', 'Magnesium', 'Calcium', 'Beryllium', 'Barium']
+#planets = (name, radius, density, distance from Sun in Astronomical Units)
+planets = [("Mercury",2440,5.43,0.395),("Venus",6052,5.24,0.723),("Earth",6378,5.52,1.000),("Mars",3396,3.93,1.530),("Jupiter",71492,1.33,5.210),("Saturn",60268,0.69,9.551),("Uranus",25559,1.27,19.213),("Neptune",24764,1.64,30.070),]
+size = lambda planet: planet[1]
+planets.sort(key=size,reverse=True)
+print(planets) #print [('Jupiter', 71492, 1.33, 5.21), ('Saturn', 60268, 0.69, 9.551), ('Uranus', 25559, 1.27, 19.213), ('Neptune', 24764, 1.64, 30.07), ('Earth', 6378, 5.52, 1.0), ('Venus', 6052, 5.24, 0.723), ('Mars', 3396, 3.93, 1.53), ('Mercury', 2440, 5.43, 0.395)]
+density = lambda planet: planet[2]
+planets.sort(key=density,reverse=True)
+print(planets) #print [[('Earth', 6378, 5.52, 1.0), ('Mercury', 2440, 5.43, 0.395), ('Venus', 6052, 5.24, 0.723), ('Mars', 3396, 3.93, 1.53), ('Neptune', 24764, 1.64, 30.07), ('Jupiter', 71492, 1.33, 5.21), ('Uranus', 25559, 1.27, 19.213), ('Saturn', 60268, 0.69, 9.551)]]
+earthmetals = ["Beryllium","Magnesium","Calcium","Strontium","Barium","Radium"]
+sortedearthmetals = sorted(earthmetals)
+print(sortedearthmetals) #print ['Barium', 'Beryllium', 'Calcium', 'Magnesium', 'Radium', 'Strontium']
+datanumbers = (7, 2, 5, 6, 1, 3, 9, 10, 4, 8)
+print(sorted(datanumbers)) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] convert a tuple to a list
+print(datanumbers) #print (7, 2, 5, 6, 1, 3, 9, 10, 4, 8)
+print(sorted("Alphabetical")) #print ['A', 'a', 'a', 'b', 'c', 'e', 'h', 'i', 'l', 'l', 'p', 't']
